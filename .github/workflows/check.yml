@@ -2,7 +2,7 @@ name: Check
 on: push
 jobs:
   checkCodeStyle:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: dbelyaev/action-checkstyle@master
