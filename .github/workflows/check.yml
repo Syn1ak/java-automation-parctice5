@@ -1,0 +1,12 @@
+#name: Check
+#on: push
+#jobs:
+#  checkCodeStyle:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - uses: dbelyaev/action-checkstyle@master
+#        with:
+#          github_token: ${{ secrets.github_token }}
+#          reporter: github-pr-review
+#          level: warning
