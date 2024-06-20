@@ -11,7 +11,7 @@ jobs:
           reporter: github-pr-review
           level: warning
   build:
-#    needs: [checkCodeStyle]
+    needs: [checkCodeStyle]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,14 +21,21 @@ jobs:
           distribution: 'temurin'
       - name: Maven Package
         run: mvn clean compile package
-      - uses: actions/upload-artifact@v4
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
           name: app-jar
           path: target/*.jar
   docker:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-jar
+          path: target/
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
