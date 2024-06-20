@@ -20,4 +20,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Maven Package
-        run: mvn -B clean compile package -DskipTests
+        run: mvn -B clean compile package
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-jar
+          path: target/*.jar
